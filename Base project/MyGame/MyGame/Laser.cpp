@@ -1,5 +1,10 @@
 #include "Laser.h"
 
+sf::FloatRect Laser::getCollisionRect()
+{
+	return sprite_.getGlobalBounds();
+}
+
 const float SPEED = 1.2f;
 
 Laser::Laser(sf::Vector2f pos)

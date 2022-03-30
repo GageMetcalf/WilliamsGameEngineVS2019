@@ -1,4 +1,22 @@
 #include "Meteor.h"
+#include "Explosion.h"
+
+sf::FloatRect Meteor::getCollisionRect()
+{
+	return sprite_.getGlobalBounds();
+}
+
+void Meteor::handleCollision(GameObject& otherGameObject)
+{
+	if (otherGameObject.hasTag("laser"))
+	{
+		otherGameObject.makeDead();
+	}
+
+	makeDead();
+	ExplosionPtr explosion = std::make_shared<Explosion>(sprite_.getPosition());
+	GAME.getCurrentScene().addGameObject(explosion);
+}
 
 const float SPEED = 0.25f;
 
@@ -6,6 +24,7 @@ Meteor::Meteor(sf::Vector2f pos)
 {
 	sprite_.setTexture(GAME.getTexture("Resources/meteor.png"));
 	sprite_.setPosition(pos);
+	setCollisionCheckEnabled(true);
 	assignTag("meteor");
 }
 
