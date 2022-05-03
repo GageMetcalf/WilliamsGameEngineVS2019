@@ -16,4 +16,4 @@ private:
 	sf::Text text_;
 };
 
-typedef std::shared_ptr<Score> ScorePtr;
+typedef std::shared_ptr<Score> ScorePtr;     
